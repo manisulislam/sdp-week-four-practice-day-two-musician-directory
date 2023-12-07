@@ -15,7 +15,7 @@ def add_musician(request):
 
 def edit_musician(request, musician_id):
     musician = musician_model.objects.get(pk=musician_id)
-    music_form = musician_form(request.POST, instance=musician)
+    music_form = musician_form(instance=musician)
     if request.method == 'POST':
         music_form  = musician_form(request.POST, instance=musician)
         if music_form .is_valid():
