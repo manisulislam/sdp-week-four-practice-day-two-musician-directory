@@ -1,5 +1,52 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>this is an home page</h1>
+<h1 class="text-center mt-5 mb-5  text-primary">Welcome to the music adda..</h1>
+<table class="table table-hover container">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">musician Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Instrument Type</th>
+        <th scope="col">Album Rating</th>
+        <th scope="col">Album Name</th>
+        <th scope="col">Release Date</th>
+        <th scope="col">Actions</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+     
+        {% for single in data %}
+        <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>
+          <a href="{% url 'edit_musician' single.musician_relation.id %}">
+            {{single.musician_relation.first_name}} {{single.musician_relation.last_name}}
+          </a>
+        </td>
+        <td>{{single.musician_relation.email}}</td>
+        <td>{{single.musician_relation.instrument_type}}</td>
+        <td>{{single.album_rating}}</td>
+        <td>{{single.album_Name}}</td>
+        <td>{{single.album_release_date}}</td>
+        <td>
+         <div class="row ">
+          <a href="{% url 'edit_album' single.id %}" class="col-12 mb-2">
+            <button type="button" class="btn btn-outline-danger ">Edit</button>
+          </a>
+          <a href="{% url 'delete_album' single.id %}" class="col-12">
+            <button type="button" class="btn btn-outline-danger ">Delete</button>
+          </a>
+          
+         </div>
+        </td>
+        </tr>
+        {% endfor %}
+     
+      
+      
+    </tbody>
+  </table>
 {% endblock %}
